@@ -8,23 +8,24 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        BasicConfigurator.configure(new AppenderSkeleton() {
-            @Override
-            protected void append(LoggingEvent event) {
-
-            }
-
-            @Override
-            public void close() {
-
-            }
-
-            @Override
-            public boolean requiresLayout() {
-                return false;
-            }
-        });
-        List<Ship> shipList = ShipsLoader.loadExelShips("src/main/resources/input.xlsx");
+//        BasicConfigurator.configure(new AppenderSkeleton() {
+//            @Override
+//            protected void append(LoggingEvent event) {
+//
+//            }
+//
+//            @Override
+//            public void close() {
+//
+//            }
+//
+//            @Override
+//            public boolean requiresLayout() {
+//                return false;
+//            }
+//        });
+//        List<Ship> shipList = ShipsLoader.loadExelShips("src/main/resources/input.xlsx");
+        List<Ship> shipList = ShipsLoader.loadDBShips();
         System.out.println(shipList);
     }
 }
