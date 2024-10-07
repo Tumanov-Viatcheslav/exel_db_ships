@@ -67,15 +67,20 @@ public class ShipsLoader {
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 
             // Interaction with DB
-            String createTable = "create table ships (\n" +
-                    "  ship_id serial primary key, \n" +
-                    "  ship_name VARCHAR (50) NOT NULL, \n" +
-                    "  ship_type VARCHAR (50) NOT NULL, \n" +
-                    "  ship_speed real NOT NULL, \n" +
-                    "  weapons VARCHAR (255)\n" +
-                    ")";
-            Statement statement = connection.createStatement();
-            statement.executeQuery(createTable);
+            try {
+                String createTable = "create table ships (\n" +
+                        "  ship_id serial primary key, \n" +
+                        "  ship_name VARCHAR (50) NOT NULL, \n" +
+                        "  ship_type VARCHAR (50) NOT NULL, \n" +
+                        "  ship_speed real NOT NULL, \n" +
+                        "  weapons VARCHAR (255)\n" +
+                        ")";
+                Statement statement = connection.createStatement();
+                statement.executeQuery(createTable);
+            } catch (Exception e) {
+                System.out.println(e.getClass().getName() + ": " + e.getMessage());
+            }
+
 
             String sql = "insert into ships (ship_name, ship_type, ship_speed, weapons) values (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
